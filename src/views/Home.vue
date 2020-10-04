@@ -1,18 +1,32 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <ProgressCheckIn></ProgressCheckIn>
+    <Profile></Profile>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue";
+<script lang="ts">
+import { Vue, Component } from "vue-property-decorator";
+import ProgressCheckIn from "@/components/home/ProgressCheckIn.vue";
+import Profile from "@/components/home/Profile.vue";
 
-export default {
-  name: "Home",
+@Component({
   components: {
-    HelloWorld
+    Profile,
+    ProgressCheckIn
   }
-};
+})
+export default class Home extends Vue {
+  created() {
+    this.$store.dispatch("profile/loadcurrent");
+  }
+}
 </script>
+<style scoped>
+/* .home {
+  height: 100vh;
+} */
+/* #map-checkin{
+  height: 300px;
+} */
+</style>
